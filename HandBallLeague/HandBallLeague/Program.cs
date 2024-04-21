@@ -1,12 +1,18 @@
+using HandBallLeague.AplicationServices.API.Domain;
 using HandBallLeague.DataAccess;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+builder.Services.AddMediatR(typeof(ResponseBase<>));
 
 var connectionString = builder.Configuration.GetConnectionString("HandBallLeagueConnection");
 builder.Services.AddDbContext<HandBallLeagueContext>(opt => opt.UseSqlServer(connectionString));

@@ -6,10 +6,10 @@ namespace HandBallLeague.Controllers
 {
     [ApiController]
     [Route("Controllers")]
-    public class TeamController : ControllerBase
+    public class TeamsController : ControllerBase
     {
         private readonly IRepository<TeamDB> _teamRepository;
-        public TeamController(IRepository<TeamDB> teamRepository)
+        public TeamsController(IRepository<TeamDB> teamRepository)
         {
             this._teamRepository = teamRepository;
         }
@@ -19,6 +19,13 @@ namespace HandBallLeague.Controllers
         public IEnumerable<TeamDB> GetTeams()
         {
             return _teamRepository.GetAll();
+        }
+
+        [HttpGet]
+        [Route("teamId")]
+        public TeamDB GetTeamById(int teamId)
+        {
+            return _teamRepository.GetById(teamId);
         }
     }
 }
