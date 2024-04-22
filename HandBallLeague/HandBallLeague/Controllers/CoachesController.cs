@@ -5,19 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace HandBallLeague.Controllers
 {
     [ApiController]
-    [Route("Teams")]
-    public class TeamsController : ControllerBase
+    [Route("Coaches")]
+    public class CoachesController : ControllerBase
     {
         private readonly IMediator mediator;
 
-        public TeamsController(IMediator mediator)
+        public CoachesController(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
         [HttpGet]
         [Route("All")]
-        public async Task<IActionResult> GetAllTeams([FromQuery] GetAllTeamsRequest request)
+        public async Task<IActionResult> GetAllCoaches([FromQuery] GetAllCoachesRequest request)
         {
             var response = await this.mediator.Send(request);
             return this.Ok(response);

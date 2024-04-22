@@ -8,11 +8,11 @@ namespace HandBallLeague.DataAccess.Entities
 
         [Required]
         [MaxLength(150)]
-        public string NameOfPlayer { get; set; }
+        public string NameOfCoach { get; set; }
 
         [Required]
         [MaxLength(150)]
-        public string SurnameOfPlayer { get; set; }
+        public string SurnameOfCoach { get; set; }
 
         public int AgeOfCoach { get; set; }
 

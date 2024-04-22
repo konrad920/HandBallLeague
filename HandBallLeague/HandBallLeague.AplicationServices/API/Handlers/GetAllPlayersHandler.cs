@@ -21,7 +21,8 @@ namespace HandBallLeague.AplicationServices.API.Handlers
             {
                 Id = x.Id,
                 Name = x.NameOfPlayer,
-                Position = x.Position
+                Position = x.Position,
+                Age = x.AgeOfPlayer
             });
 
             var response = new GetAllPlayersResponse()
