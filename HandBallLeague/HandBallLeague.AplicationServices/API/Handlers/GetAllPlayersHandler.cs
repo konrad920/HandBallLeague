@@ -1,4 +1,5 @@
-﻿using HandBallLeague.AplicationServices.API.Domain;
+﻿using AutoMapper;
+using HandBallLeague.AplicationServices.API.Domain;
 using HandBallLeague.AplicationServices.API.Domain.Models;
 using HandBallLeague.DataAccess;
 using HandBallLeague.DataAccess.Entities;
@@ -9,28 +10,23 @@ namespace HandBallLeague.AplicationServices.API.Handlers
     public class GetAllPlayersHandler : IRequestHandler<GetAllPlayersRequest, GetAllPlayersResponse>
     {
         private readonly IRepository<PlayerDB> repository;
+        private readonly IMapper mapper;
 
-        public GetAllPlayersHandler(IRepository<PlayerDB> repository)
+        public GetAllPlayersHandler(IRepository<PlayerDB> repository, IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
-        public Task<GetAllPlayersResponse> Handle(GetAllPlayersRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllPlayersResponse> Handle(GetAllPlayersRequest request, CancellationToken cancellationToken)
         {
-            var players = this.repository.GetAll();
-            var domainPlayers = players.Select(x => new Player() 
-            {
-                Id = x.Id,
-                Name = x.NameOfPlayer,
-                Position = x.Position,
-                Age = x.AgeOfPlayer
-            });
-
+            var players = await this.repository.GetAll();
+            var mappedPlayers = this.mapper.Map<List<Player>>(players);
             var response = new GetAllPlayersResponse()
             {
-                Data = domainPlayers.ToList()
+                Data = mappedPlayers
             };
 
-            return Task.FromResult( response );
+            return response;
         }
     }
 }

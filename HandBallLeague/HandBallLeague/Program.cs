@@ -1,4 +1,5 @@
 using HandBallLeague.AplicationServices.API.Domain;
+using HandBallLeague.AplicationServices.API.Mappings;
 using HandBallLeague.DataAccess;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddAutoMapper(typeof(PlayersProfile).Assembly);
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
