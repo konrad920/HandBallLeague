@@ -11,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+
 builder.Services.AddAutoMapper(typeof(PlayersProfile).Assembly);
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
