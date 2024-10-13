@@ -2,6 +2,7 @@
 using HandBallLeague.AplicationServices.API.Domain;
 using HandBallLeague.AplicationServices.API.Domain.Models;
 using HandBallLeague.DataAccess;
+using HandBallLeague.DataAccess.CQRS.Queries;
 using HandBallLeague.DataAccess.Entities;
 using MediatR;
 
@@ -9,17 +10,18 @@ namespace HandBallLeague.AplicationServices.API.Handlers
 {
     public class GetAllMatchesHandler : IRequestHandler<GetAllMatchesRequest, GetAllMatchesResponse>
     {
-        private readonly IRepository<MatchDB> repository;
         private readonly IMapper mapper;
+        private readonly IQueryExecutor queryExecutor;
 
-        public GetAllMatchesHandler(IRepository<MatchDB> repository, IMapper mapper)
+        public GetAllMatchesHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            this.repository = repository;
             this.mapper = mapper;
+            this.queryExecutor = queryExecutor;
         }
         public async Task<GetAllMatchesResponse> Handle(GetAllMatchesRequest request, CancellationToken cancellationToken)
         {
-            var matches = await this.repository.GetAll();
+            var query = new GetMatchesQuery();
+            var matches = await this.queryExecutor.Execute(query);
             var mappedMatches = this.mapper.Map<List<Match>>(matches);
             var response = new GetAllMatchesResponse()
             {
