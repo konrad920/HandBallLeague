@@ -1,6 +1,6 @@
 ﻿using HandBallLeague.AplicationServices.API.Domain.Models;
 
-namespace HandBallLeague.AplicationServices.API.Domain
+namespace HandBallLeague.AplicationServices.API.Domain.Teams
 {
     public class GetAllTeamsResponse : ResponseBase<List<Team>>
     {

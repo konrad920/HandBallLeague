@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using HandBallLeague.AplicationServices.API.Domain;
 using HandBallLeague.AplicationServices.API.Domain.Models;
+using HandBallLeague.AplicationServices.API.Domain.Players;
 using HandBallLeague.DataAccess;
-using HandBallLeague.DataAccess.CQRS.Queries;
-using HandBallLeague.DataAccess.Entities;
+using HandBallLeague.DataAccess.CQRS.Queries.ALL;
 using MediatR;
 
-namespace HandBallLeague.AplicationServices.API.Handlers
+namespace HandBallLeague.AplicationServices.API.Handlers.Players
 {
     public class GetAllPlayersHandler : IRequestHandler<GetAllPlayersRequest, GetAllPlayersResponse>
     {
@@ -21,8 +20,8 @@ namespace HandBallLeague.AplicationServices.API.Handlers
         public async Task<GetAllPlayersResponse> Handle(GetAllPlayersRequest request, CancellationToken cancellationToken)
         {
             var query = new GetPlayersQuery();
-            var players = await this.queryExecutor.Execute(query);
-            var mappedPlayers = this.mapper.Map<List<Player>>(players);
+            var players = await queryExecutor.Execute(query);
+            var mappedPlayers = mapper.Map<List<Player>>(players);
             var response = new GetAllPlayersResponse()
             {
                 Data = mappedPlayers

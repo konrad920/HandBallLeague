@@ -1,4 +1,4 @@
-﻿using HandBallLeague.AplicationServices.API.Domain;
+﻿using HandBallLeague.AplicationServices.API.Domain.Teams;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +19,18 @@ namespace HandBallLeague.Controllers
         [Route("All")]
         public async Task<IActionResult> GetAllTeams([FromQuery] GetAllTeamsRequest request)
         {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
+
+        [HttpGet]
+        [Route("{teamId}")]
+        public async Task<IActionResult> GetTeamById([FromRoute] int teamId)
+        {
+            var request = new GetTeamByIdRequest()
+            {
+                Id = teamId
+            };
             var response = await this.mediator.Send(request);
             return this.Ok(response);
         }

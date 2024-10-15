@@ -20,7 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Commands\" />
+    <Folder Include="CQRS\Commands\ADD\" />
+    <Folder Include="CQRS\Commands\DELETE\" />
+    <Folder Include="CQRS\Commands\PUT\" />
   </ItemGroup>
 
 </Project>

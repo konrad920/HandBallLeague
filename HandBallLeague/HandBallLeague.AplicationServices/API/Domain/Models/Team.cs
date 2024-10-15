@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace HandBallLeague.AplicationServices.API.Domain.Models
+﻿namespace HandBallLeague.AplicationServices.API.Domain.Models
 {
     public class Team
     {

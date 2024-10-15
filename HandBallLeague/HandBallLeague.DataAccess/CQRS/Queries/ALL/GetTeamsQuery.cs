@@ -1,7 +1,7 @@
 ﻿using HandBallLeague.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HandBallLeague.DataAccess.CQRS.Queries
+namespace HandBallLeague.DataAccess.CQRS.Queries.ALL
 {
     public class GetTeamsQuery : QueryBase<List<TeamDB>>
     {
