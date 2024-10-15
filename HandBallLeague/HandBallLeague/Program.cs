@@ -13,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 
+builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
+
 builder.Services.AddAutoMapper(typeof(PlayersProfile).Assembly);
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

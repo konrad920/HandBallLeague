@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HandBallLeague.AplicationServices.API.Domain.Models;
+using HandBallLeague.AplicationServices.API.Domain.Teams;
 using HandBallLeague.DataAccess.Entities;
 
 namespace HandBallLeague.AplicationServices.API.Mappings
@@ -8,6 +9,11 @@ namespace HandBallLeague.AplicationServices.API.Mappings
     {
         public TeamProfile()
         {
+            this.CreateMap<AddTeamRequest, TeamDB>()
+                .ForMember(x => x.NameOfTeam, y => y.MapFrom(z => z.TeamName))
+                .ForMember(x => x.CityOfTeam, y => y.MapFrom(z => z.TeamCity))
+                .ForMember(x => x.FoundingYear, y => y.MapFrom(z => z.TeamFoundingYear));
+
             this.CreateMap<TeamDB, Team>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
                 .ForMember(x => x.NameOfTeam, y => y.MapFrom(z => z.NameOfTeam))
