@@ -35,7 +35,7 @@ namespace HandBallLeague.Controllers
             return this.Ok(response);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddMatch([FromBody] AddMatchRequest request)
         {

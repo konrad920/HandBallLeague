@@ -20,11 +20,11 @@ namespace HandBallLeague.AplicationServices.API.Handlers.Coaches
         }
         public async Task<AddCoachResponse> Handle(AddCoachRequest request, CancellationToken cancellationToken)
         {
-            var coachFromDB = new AddCoachCommand()
+            var coachToDB = new AddCoachCommand()
             {
-                Parametr = this.mapper.Map<CoachDB>(request)
+                Parameter = this.mapper.Map<CoachDB>(request)
             };
-            var command = await this.commandExecutor.Execute(coachFromDB);
+            var command = await this.commandExecutor.Execute(coachToDB);
             return new AddCoachResponse()
             {
                 Data = this.mapper.Map<Coach>(command)

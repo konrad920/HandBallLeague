@@ -2,7 +2,7 @@
 {
     public abstract class CommandBase<TParametr, TResult>
     {
-        public TParametr Parametr { get; set; }
+        public TParametr Parameter { get; set; }
 
         public abstract Task<TResult> Execute(HandBallLeagueContext context);
     }

@@ -6,9 +6,9 @@ namespace HandBallLeague.DataAccess.CQRS.Commands.ADD
     {
         public override async Task<MatchDB> Execute(HandBallLeagueContext context)
         {
-            await context.Matches.AddAsync(Parametr);
+            await context.Matches.AddAsync(Parameter);
             await context.SaveChangesAsync();
-            return Parametr;
+            return Parameter;
         }
     }
 }

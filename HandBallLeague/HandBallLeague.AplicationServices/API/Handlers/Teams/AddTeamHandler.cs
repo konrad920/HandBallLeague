@@ -20,11 +20,11 @@ namespace HandBallLeague.AplicationServices.API.Handlers.Teams
         }
         public async Task<AddTeamResponse> Handle(AddTeamRequest request, CancellationToken cancellationToken)
         {
-            var teamFromDB = new AddTeamCommand()
+            var teamToDB = new AddTeamCommand()
             {
-                Parametr = this.mapper.Map<TeamDB>(request)
+                Parameter = this.mapper.Map<TeamDB>(request)
             };
-            var command = await this.commandExecutor.Execute(teamFromDB);
+            var command = await this.commandExecutor.Execute(teamToDB);
             return new AddTeamResponse()
             {
                 Data = this.mapper.Map<Team>(command)

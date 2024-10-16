@@ -10,8 +10,9 @@ namespace HandBallLeague.AplicationServices.API.Mappings
         public MatchProfile()
         {
             this.CreateMap<AddMatchRequest, MatchDB>()
-                .ForMember(x => x.HostsScore, y => y.MapFrom(z => z.HostsScore))
-                .ForMember(x => x.GuestsScore, y => y.MapFrom(z => z.GuestsScore));
+                .ForMember(x => x.HostsScore, y => y.MapFrom(z => z.MatchHostsScore))
+                .ForMember(x => x.GuestsScore, y => y.MapFrom(z => z.MatchQuestScore))
+                .ForMember(x => x.Audience, y => y.MapFrom(z => z.MatchAudience));
 
             this.CreateMap<MatchDB, Match>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))

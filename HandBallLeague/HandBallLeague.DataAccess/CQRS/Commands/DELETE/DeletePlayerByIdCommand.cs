@@ -1,12 +1,13 @@
 ﻿using HandBallLeague.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace HandBallLeague.DataAccess.CQRS.Commands.ADD
+namespace HandBallLeague.DataAccess.CQRS.Commands.DELETE
 {
-    public class AddPlayerCommand : CommandBase<PlayerDB, PlayerDB>
+    public class DeletePlayerByIdCommand : CommandBase<PlayerDB, PlayerDB>
     {
         public override async Task<PlayerDB> Execute(HandBallLeagueContext context)
         {
-            await context.Players.AddAsync(Parameter);
+            context.Players.Remove(Parameter);
             await context.SaveChangesAsync();
             return Parameter;
         }
