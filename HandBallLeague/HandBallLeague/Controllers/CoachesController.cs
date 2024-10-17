@@ -42,5 +42,17 @@ namespace HandBallLeague.Controllers
             var response = await this.mediator.Send(request);
             return this.Ok(response);
         }
+
+        [HttpDelete]
+        [Route("{coachId}")]
+        public async Task<IActionResult> DeleteCoach([FromRoute] int coachId)
+        {
+            var request = new GetCoachByIdRequest()
+            {
+                Id = coachId
+            };
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
     }
 }
