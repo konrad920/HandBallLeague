@@ -8,8 +8,7 @@ namespace HandBallLeague.DataAccess.CQRS.Queries.BYID
         public int CoachId { get; set; }
         public override async Task<CoachDB> Execute(HandBallLeagueContext context)
         {
-            var coachFromDb = await context.Coaches.FirstOrDefaultAsync(x => x.Id == CoachId);
-            return coachFromDb;
+            return await context.Coaches.FirstOrDefaultAsync(x => x.Id == CoachId);
         }
     }
 }

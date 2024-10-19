@@ -9,5 +9,9 @@ namespace HandBallLeague.AplicationServices.API.Domain.Matches
         public int MatchHostsScore { get; set; }
 
         public int MatchQuestScore { get; set; }
+
+        public int MatchHostTeamId { get; set; }
+
+        public int MatchGuestTeamId { get; set; }
     }
 }

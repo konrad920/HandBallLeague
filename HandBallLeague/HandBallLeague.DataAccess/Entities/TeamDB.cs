@@ -6,9 +6,7 @@ namespace HandBallLeague.DataAccess.Entities
     {
         public List<PlayerDB> Players { get; set; }
 
-        public int CoachDBId { get; set; }
-
-        //public CoachDB CoachDB { get; set; }
+        public CoachDB CoachDB { get; set; }
 
         public List<MatchDB> Matches { get; set; }
 
@@ -21,5 +19,7 @@ namespace HandBallLeague.DataAccess.Entities
         public string CityOfTeam { get; set; }
 
         public int FoundingYear { get; set; }
+
+        public float BudgetOfTeam { get; set; }
     }
 }

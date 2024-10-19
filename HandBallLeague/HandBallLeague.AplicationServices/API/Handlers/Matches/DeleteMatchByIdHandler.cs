@@ -23,19 +23,19 @@ namespace HandBallLeague.AplicationServices.API.Handlers.Matches
         }
         public async Task<DeleteMatchByIdResponse> Handle(DeleteMatchByIdRequest request, CancellationToken cancellationToken)
         {
-            var matchToDelete = new GetMatchByIdQuery()
+            var query = new GetMatchByIdQuery()
             {
                 MatchId = request.Id
             };
-            var query = await this.queryExecutor.Execute(matchToDelete);
-            var matchDeleted = new DeleteMatchByIdCommand()
+            var matchToDelete = await this.queryExecutor.Execute(query);
+            var command = new DeleteMatchByIdCommand()
             {
-                Parameter = this.mapper.Map<MatchDB>(query)
+                Parameter = this.mapper.Map<MatchDB>(matchToDelete)
             };
-            var command = await this.commandExecutor.Execute(matchDeleted);
+            var matchDeleted = await this.commandExecutor.Execute(command);
             return new DeleteMatchByIdResponse()
             {
-                Data = this.mapper.Map<Match>(command)
+                Data = this.mapper.Map<Match>(matchDeleted)
             };
         }
     }

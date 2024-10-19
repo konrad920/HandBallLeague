@@ -7,5 +7,7 @@
         public string NameOfTeam { get; set; }
 
         public string CityOfTeam { get; set; }
+
+        public int CoachIdOfTeam { get; set; }
     }
 }

@@ -23,19 +23,19 @@ namespace HandBallLeague.AplicationServices.API.Handlers.Coaches
         }
         public async Task<DeleteCoachByIdResponse> Handle(DeleteCoachByIdRequest request, CancellationToken cancellationToken)
         {
-            var coachToDelete = new GetCoachByIdQuery()
+            var query = new GetCoachByIdQuery()
             {
                 CoachId = request.Id
             };
-            var query = await this.queryExecutor.Execute(coachToDelete);
-            var coachDeleted = new DeleteCoachByIdCommand()
+            var coachToDelete = await this.queryExecutor.Execute(query);
+            var command = new DeleteCoachByIdCommand()
             {
-                Parameter = this.mapper.Map<CoachDB>(query)
+                Parameter = this.mapper.Map<CoachDB>(coachToDelete)
             };
-            var command = await this.commandExecutor.Execute(coachDeleted);
+            var coachDeleted = await this.commandExecutor.Execute(command);
             return new DeleteCoachByIdResponse()
             {
-                Data = this.mapper.Map<Coach>(command)
+                Data = this.mapper.Map<Coach>(coachDeleted)
             };
         }
     }

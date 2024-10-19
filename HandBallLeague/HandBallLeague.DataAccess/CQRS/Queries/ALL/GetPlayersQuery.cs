@@ -5,9 +5,16 @@ namespace HandBallLeague.DataAccess.CQRS.Queries.ALL
 {
     public class GetPlayersQuery : QueryBase<List<PlayerDB>>
     {
-        public override Task<List<PlayerDB>> Execute(HandBallLeagueContext context)
+        public override async Task<List<PlayerDB>> Execute(HandBallLeagueContext context)
         {
-            return context.Players.ToListAsync();
+            var teams = await context.Teams.ToListAsync();
+
+            var players = await context.Players.ToListAsync();
+            foreach (var player in players)
+            {
+                player.TeamDB = teams.FirstOrDefault(x => x.Id == player.TeamDBId);
+            }
+            return players;
         }
     }
 }

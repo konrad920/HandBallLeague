@@ -3,6 +3,7 @@ using HandBallLeague.AplicationServices.API.Domain.Models;
 using HandBallLeague.AplicationServices.API.Domain.Players;
 using HandBallLeague.DataAccess;
 using HandBallLeague.DataAccess.CQRS.Queries.ALL;
+using HandBallLeague.DataAccess.CQRS.Queries.BYID;
 using MediatR;
 
 namespace HandBallLeague.AplicationServices.API.Handlers.Players

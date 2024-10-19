@@ -13,5 +13,11 @@ namespace HandBallLeague.DataAccess.Entities
 
         [Required]
         public int GuestsScore { get; set; }
+
+        [Required]
+        public int GuestsTeamId { get; set; }
+
+        [Required]
+        public int HostsTeamId { get; set; }
     }
 }

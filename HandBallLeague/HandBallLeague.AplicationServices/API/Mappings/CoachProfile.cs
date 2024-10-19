@@ -19,7 +19,8 @@ namespace HandBallLeague.AplicationServices.API.Mappings
             CreateMap<CoachDB, Coach>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.NameOfCoach))
-                .ForMember(x => x.Age, y => y.MapFrom(z => z.AgeOfCoach));
+                .ForMember(x => x.Age, y => y.MapFrom(z => z.AgeOfCoach))
+                .ForMember(x => x.TeamIdOfCoach, y => y.MapFrom(z => z.TeamDBId));
         }
     }
 }

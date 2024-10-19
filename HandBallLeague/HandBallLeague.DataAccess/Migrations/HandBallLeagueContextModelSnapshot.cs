@@ -50,6 +50,9 @@ namespace HandBallLeague.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TeamDBId")
+                        .IsUnique();
+
                     b.ToTable("Coaches");
                 });
 
@@ -67,7 +70,13 @@ namespace HandBallLeague.DataAccess.Migrations
                     b.Property<int>("GuestsScore")
                         .HasColumnType("int");
 
+                    b.Property<int>("GuestsTeamId")
+                        .HasColumnType("int");
+
                     b.Property<int>("HostsScore")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HostsTeamId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -122,13 +131,13 @@ namespace HandBallLeague.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<float>("BudgetOfTeam")
+                        .HasColumnType("real");
+
                     b.Property<string>("CityOfTeam")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-
-                    b.Property<int>("CoachDBId")
-                        .HasColumnType("int");
 
                     b.Property<int>("FoundingYear")
                         .HasColumnType("int");
@@ -156,6 +165,17 @@ namespace HandBallLeague.DataAccess.Migrations
                     b.HasIndex("TeamsId");
 
                     b.ToTable("MatchDBTeamDB");
+                });
+
+            modelBuilder.Entity("HandBallLeague.DataAccess.Entities.CoachDB", b =>
+                {
+                    b.HasOne("HandBallLeague.DataAccess.Entities.TeamDB", "TeamDB")
+                        .WithOne("CoachDB")
+                        .HasForeignKey("HandBallLeague.DataAccess.Entities.CoachDB", "TeamDBId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TeamDB");
                 });
 
             modelBuilder.Entity("HandBallLeague.DataAccess.Entities.PlayerDB", b =>
@@ -186,6 +206,9 @@ namespace HandBallLeague.DataAccess.Migrations
 
             modelBuilder.Entity("HandBallLeague.DataAccess.Entities.TeamDB", b =>
                 {
+                    b.Navigation("CoachDB")
+                        .IsRequired();
+
                     b.Navigation("Players");
                 });
 #pragma warning restore 612, 618

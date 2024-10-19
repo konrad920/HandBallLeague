@@ -5,9 +5,9 @@ namespace HandBallLeague.DataAccess.CQRS.Queries.ALL
 {
     public class GetCoachesQuery : QueryBase<List<CoachDB>>
     {
-        public override Task<List<CoachDB>> Execute(HandBallLeagueContext context)
+        public override async Task<List<CoachDB>> Execute(HandBallLeagueContext context)
         {
-            return context.Coaches.ToListAsync();
+            return await context.Coaches.ToListAsync();
         }
     }
 }

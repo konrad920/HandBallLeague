@@ -54,5 +54,13 @@ namespace HandBallLeague.Controllers
             var response = await this.mediator.Send(request);
             return this.Ok(response);
         }
+
+        [HttpPut]
+        [Route("matchId")]
+        public async Task<IActionResult> EditMatch([FromBody] EditMatchByIdRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
     }
 }

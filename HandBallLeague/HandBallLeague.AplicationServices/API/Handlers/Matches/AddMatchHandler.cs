@@ -21,14 +21,14 @@ namespace HandBallLeague.AplicationServices.API.Handlers.Matches
 
         public async Task<AddMatchResponse> Handle(AddMatchRequest request, CancellationToken cancellationToken)
         {
-            var matchToDB = new AddMatchCommand()
+            var command = new AddMatchCommand()
             {
                 Parameter = this.mapper.Map<MatchDB>(request)
             };
-            var command = await this.commandExecutor.Execute(matchToDB);
+            var matchToDB = await this.commandExecutor.Execute(command);
             return new AddMatchResponse()
             {
-                Data = this.mapper.Map<Match>(command)
+                Data = this.mapper.Map<Match>(matchToDB)
             };
         }
     }

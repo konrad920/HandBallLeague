@@ -5,9 +5,9 @@ namespace HandBallLeague.DataAccess.CQRS.Queries.ALL
 {
     public class GetMatchesQuery : QueryBase<List<MatchDB>>
     {
-        public override Task<List<MatchDB>> Execute(HandBallLeagueContext context)
+        public override async Task<List<MatchDB>> Execute(HandBallLeagueContext context)
         {
-            return context.Matches.ToListAsync();
+            return await context.Matches.ToListAsync();
         }
     }
 }
